@@ -17,11 +17,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int _input;
-  List<int> _weight;
+  String _input;
+  List<String> _weight;
+
+@override
+void initState(){
+  super.initState();
+  _input='';
+}
+
+  void _updateList(String input){
+  setState(() {
+    _input=input;
+    _weight.add(input);
+  });
+  }
 
   @override
-
   Widget build(BuildContext context) {
 
     return Padding(
@@ -37,8 +49,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderRadius: BorderRadius.circular(5.0)
               ),
             ),
+            onSubmitted: _updateList,
 
+         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Container(
+              child: InputDecorator(
+            child: Text(_input,
+            style: Theme.of(context).textTheme.headline5),
+            decoration: InputDecoration(
+    labelText: 'What you just inputted',
+    labelStyle: Theme.of(context).textTheme.headline5,
+    border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(5.0)
             ),
+
+
+          ),
+          ),
+        ),
+        ),
 
 
 
