@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:Weight_Tracker/Graph.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -54,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
+    child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
@@ -111,9 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(10.0),
                   color: Colors.amber),
             ),
-          )
+          ),
+          Graph()
+
+          ,
         ],
       ),
+    ),
     );
     //);
   }
