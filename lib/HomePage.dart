@@ -17,33 +17,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _input;
-  var _weight = <String>[];
+  String _input = '';
+  var weight = <String>[];
 
-  @override
-  void initState() {
-    super.initState();
-    _input = '';
-  }
+//  @override
+//  void initState() {
+//    super.initState();
+//    _input = '';
+//  }
 
   void _updateInput(String input) {
     setState(() {
       _input = input;
+      weight.add(_input);
     });
   }
 
   void _updateList() {
     setState(() {
-      _weight.add(_input);
+      weight.add(_input);
+      Graph(weight);
     });
   }
 
   Widget _viewList() {
     String tmp = '';
-    if (_weight.isEmpty)
+    if (weight.isEmpty)
       return null;
     else {
-      for (var text in _weight) {
+      for (var text in weight) {
         tmp = tmp + ' ' + text;
       }
       return Text(
@@ -56,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-    child: Padding(
+    child:
+      Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
@@ -108,18 +111,18 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               child: _viewList(),
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(5.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Colors.amber),
             ),
           ),
-          Graph()
+          Graph(weight),
 
-          ,
+
         ],
       ),
-    ),
+  ),
     );
     //);
   }
