@@ -17,14 +17,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _input = '';
+  String _input ;
   var weight = <String>[];
 
-//  @override
-//  void initState() {
-//    super.initState();
-//    _input = '';
-//  }
+  @override
+  void initState() {
+    super.initState();
+    _input = '';
+  }
 
   void _updateInput(String input) {
     setState(() {
@@ -36,7 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void _updateList() {
     setState(() {
       weight.add(_input);
-      Graph(weight);
     });
   }
 
@@ -124,6 +123,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
   ),
     );
-    //);
   }
 }
