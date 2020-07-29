@@ -18,3 +18,9 @@ So that brings to 29th of July. I looked at the documentation of the fl_chart pa
 Soon I was immersed in the various properties and understood many of them were not of any use. After I got a sense of how the graph works, my next task was to use the list made by the user to generate the X and Y co-ordinates in the graph. This took a shit ton of time. But it was really fun debugging the code, putting up lines and lines of temporary code to check every single methods and lists and what not. Finally had the Eureka moment by 30th July( early morning). Got everything figured out and the app was doing exactly what I wanted it to do(For now). Thats the end of log #1, should create a To-Do section on what all to implement next.
 
 ## ToDo
+* When a user adds a weight for the first time, the Y axis weight range should be according to that first weight. Meaning putting a 20 or 30 kg range(+20 and -20) based on that first weight.
+* Naming Y axis: **In Kg** or something if possible, not that important.
+* Removing the what user inputted widget or just repurpose it to show the list of weight.
+* Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
+* Connect FireBase to the app and learn how to implement the database in Firebase instead of storing it locally.
+* Two tabs for past week graph range and past month graph
