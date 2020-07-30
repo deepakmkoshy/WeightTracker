@@ -22,10 +22,21 @@ Screenshot:
   <img src="https://raw.githubusercontent.com/deepakmkoshy/WeightTracker/master/screenshots/30-07-2020%2C%20log.png?token=AHK7QYQVCFSPV5QBUMYLF6S7FQ6N6" width="256" hspace="4">
 </p>
 
+### 31-07-2020:
+When a user adds a weight for the first time, the Y axis weight range is updated according to that first weight. The graph will be repainted using the new range on Y axis based on the user's first input.
+
+Built a release APK and tried out on my phone. The graph needs some touch properties, everything else seems good.
+
+Created a new project in firebase and connected it to the app
+
 # ToDo
-* When a user adds a weight for the first time, the Y axis weight range should be according to that first weight. Meaning putting a 20 or 30 kg range(+20 and -20) based on that first weight.
 * Naming Y axis: **In Kg** or something if possible, not that important.
 * Removing the what user inputted widget or just repurpose it to show the list of weight.
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
-* Connect FireBase to the app and learn how to implement the database in Firebase instead of storing it locally.
+* Learn how to implement the database in Firebase instead of storing it locally.
 * Two tabs for past week graph range and past month graph
+* Change the touch property for graph.
+
+# Done
+* When a user adds a weight for the first time, the Y axis weight range should be according to that first weight. Meaning putting a 20 or 30 kg range(+20 and -20) based on that first weight.
+* Connected FireBase to the app.
