@@ -15,19 +15,30 @@ class GraphState extends State<Graph> {
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
-
+  double minY;
+  double maxY;
   final fSpots = <FlSpot>[];
-
+@override
+void initState(){
+  super.initState();
+  minY=60;
+  maxY=100;
+}
   //Function to create the Spots from scratch using the weight list
   List<FlSpot> _updateSta() {
     fSpots.clear(); //Clearing to avoid overlap of the list
+
     if (widget.wt.isNotEmpty) {
       for (int i = 0; i < widget.wt.length; i++) {
         fSpots.add(FlSpot((i.toDouble()), double.parse(widget.wt[i])));
+        if(i == 0){
+          minY = double.parse(widget.wt[i]) - 20;
+          maxY = double.parse(widget.wt[i]) + 20;
+        }
       }
       return fSpots;
     } else
-      return [FlSpot(1, 89)]; //Placeholder until the user inputs the weight
+      return [FlSpot(0, 0)]; //Placeholder until the user inputs the weight
   }
 
   @override
@@ -87,10 +98,7 @@ class GraphState extends State<Graph> {
       borderData: FlBorderData(
           show: true,
           border: Border.all(color: const Color(0xff37434d), width: 1)),
-      minX: 0,
-      maxX: 6,
-      minY: 60,
-      maxY: 100,
+
       lineBarsData: [
         LineChartBarData(
           spots: _updateSta(),
@@ -107,7 +115,7 @@ class GraphState extends State<Graph> {
           isCurved: true,
           colors: gradientColors,
           barWidth: 5,
-          isStrokeCapRound: false,
+          isStrokeCapRound: true,
           dotData: FlDotData(
             show: true,
           ),
@@ -118,6 +126,10 @@ class GraphState extends State<Graph> {
           ),
         ),
       ],
+      minX: 0,
+      maxX: 6,
+      minY: minY,
+      maxY: maxY,
     );
   }
 }
