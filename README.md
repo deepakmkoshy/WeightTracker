@@ -1,10 +1,10 @@
 # Weight Tracker
 This is just a small Weight tracking application developed in Flutter. 
 
-## Log
+# Log
 This is for Deepak's eyes only, not much of a problem if anyone else sees, but just that its going to be written in a coloqial manner.
 
-#### 30-07-2020:
+### 30-07-2020:
 This is going to be the first log update. I started this project on July 26th, 2020. I had just completed the converter app 2 days ago. That app was purely based on the Udacity Flutter course, and other than adding the swap functionality everything else was from the Udacity made code. But it was a great learning experience, and I am sure if I had just tried to build an app from scratch, then I would have run into some big problems because of inadequate knowledge in flutter and dart.
 
 After building the final APK for that project, I started researching about some project ideas in flutter, and I came across a Medium article linking to several open source flutter apps, and one of them was a weight tracker app. The app looked really simple, and since I love tracking my weight, I gave it a shot.
@@ -17,7 +17,7 @@ So that brings to 29th of July. I looked at the documentation of the fl_chart pa
 
 Soon I was immersed in the various properties and understood many of them were not of any use. After I got a sense of how the graph works, my next task was to use the list made by the user to generate the X and Y co-ordinates in the graph. This took a shit ton of time. But it was really fun debugging the code, putting up lines and lines of temporary code to check every single methods and lists and what not. Finally had the Eureka moment by 30th July( early morning). Got everything figured out and the app was doing exactly what I wanted it to do(For now). Thats the end of log #1, should create a To-Do section on what all to implement next.
 
-## ToDo
+# ToDo
 * When a user adds a weight for the first time, the Y axis weight range should be according to that first weight. Meaning putting a 20 or 30 kg range(+20 and -20) based on that first weight.
 * Naming Y axis: **In Kg** or something if possible, not that important.
 * Removing the what user inputted widget or just repurpose it to show the list of weight.
