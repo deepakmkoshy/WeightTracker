@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Weight_Tracker/Graph.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -25,17 +26,19 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _input = '';
   }
-
+///TODO: Pass the firestore data while initialising
   void _updateInput(String input) {
     setState(() {
       _input = input;
       weight.add(_input);
-    });
-  }
 
-  void _updateList() {
-    setState(() {
-      weight.add(_input);
+      //Adding the array to firestore
+      final firestore = Firestore.instance;
+      firestore.collection("Weight_List").document("wtlist").updateData(
+        {
+          "weight" : FieldValue.arrayUnion([input]),
+        }
+      );
     });
   }
 
@@ -76,19 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onSubmitted: _updateInput,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Ink(
-                  decoration: const ShapeDecoration(
-                    color: Colors.purpleAccent,
-                    shape: CircleBorder(),
-                  ),
-                  child: IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: _updateList,
-                  ),
-                ),
-              ),
+
             ],
           ),
           Padding(
