@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       //Adding the array to firestore
       firestore.collection("Weight_List").document("wtlist").updateData({
-        "weight": FieldValue.arrayUnion([input]),
+        "weight": weight,  //FieldValue.arrayUnion doesn't add duplicate values
       });
     });
   }
