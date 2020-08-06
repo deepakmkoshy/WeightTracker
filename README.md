@@ -19,7 +19,7 @@ Soon I was immersed in the various properties and understood many of them were n
 
 Screenshot:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/deepakmkoshy/WeightTracker/master/screenshots/30-07-2020%2C%20log.png?token=AHK7QYQVCFSPV5QBUMYLF6S7FQ6N6" width="256" hspace="4">
+  <img src="screenshots/30-07-2020%2C%20log.png" width="256" hspace="4">
 </p>
 
 ### 31-07-2020:
@@ -29,14 +29,34 @@ Built a release APK and tried out on my phone. The graph needs some touch proper
 
 Created a new project in firebase and connected it to the app
 
+### 06-08-2020
+Added firebase and made it work. The data is saved in firestore and was able to retrieve it succesfully. An issue occured with FIeldValue.arrayUnion where no 2 identical values can be added simultaneously. So had to add the data to the array and pass the array to the firestore.
+Made quite a lot of minor changes like: 
+* Repurposed the "What you just typed' section to show the list of weights. 
+* Removed the container which showed the list 
+* Added a clear button to clear the list and update that also in firestore
+* If user inputs a decimal value as the first weight, the Y-axis titles will still be integer.
+
+Screenshot:
+<p align="center">
+  <img src="screenshots/06-08-2020.png" width="256" hspace="4">
+</p>
+
+There is one major bug right now: When the app is launched for the first time, even if there is data in firebase, it is not reflected in the app. Only when the user inputs a value will the data be fetched and will be updated in the app accordingly. 
+
+Anyway **Firebase is going to be removed from the project** because for this app requirement, using Firestore as database is a wastage of resources. A simpler way will be to use a database stored in the local storage of the user. Hence the next update would be to remove firestore and use Hive as a replacement. Not sure if I will be continuing with Hive, but that's the choice for now. Hence the major bug I just mentioned won't be considered, hoping implementing Hive will also sort out that issue(But should understand in the future why that bug)
+
+
 # ToDo
 * Naming Y axis: **In Kg** or something if possible, not that important.
-* Removing the what user inputted widget or just repurpose it to show the list of weight.
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
-* Learn how to implement the database in Firebase instead of storing it locally.
 * Two tabs for past week graph range and past month graph
 * Change the touch property for graph.
+* Implement Hive as a replacement for firestore
+* The graph must show the weight without even touching the graph.
 
 # Done
 * When a user adds a weight for the first time, the Y axis weight range should be according to that first weight. Meaning putting a 20 or 30 kg range(+20 and -20) based on that first weight.
 * Connected FireBase to the app.
+* Removing the what user inputted widget or just repurpose it to show the list of weight.
+* Learn how to implement the database in Firebase instead of storing it locally.
