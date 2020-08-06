@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ignore: must_be_immutable
 class Graph extends StatefulWidget {
@@ -33,8 +32,8 @@ void initState(){
       for (int i = 0; i < widget.wt.length; i++) {
         fSpots.add(FlSpot((i.toDouble()), double.parse(widget.wt[i])));
         if(i == 0){
-          minY = double.parse(widget.wt[i]) - 20;
-          maxY = double.parse(widget.wt[i]) + 20;
+          minY = (double.parse(widget.wt[i]) - 20).roundToDouble();
+          maxY = (double.parse(widget.wt[i]) + 20).roundToDouble();
         }
       }
       return fSpots;

@@ -18,27 +18,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _input ;
+  String _input;
+  final firestore = Firestore.instance;
+
   var weight = <String>[];
 
   @override
   void initState() {
     super.initState();
     _input = '';
+    init();
   }
-///TODO: Pass the firestore data while initialising
+
+  void init() async {
+    var tmp =
+        await firestore.collection("Weight_List").document("wtlist").get();
+    if (tmp.data['weight'] != null) {
+      print(tmp.data['weight'].length);
+      weight = List<String>.from(tmp.data['weight']);
+    }
+  }
+
   void _updateInput(String input) {
     setState(() {
       _input = input;
       weight.add(_input);
 
       //Adding the array to firestore
-      final firestore = Firestore.instance;
-      firestore.collection("Weight_List").document("wtlist").updateData(
-        {
-          "weight" : FieldValue.arrayUnion([input]),
-        }
-      );
+      firestore.collection("Weight_List").document("wtlist").updateData({
+        "weight": FieldValue.arrayUnion([input]),
+      });
     });
   }
 
@@ -60,59 +69,55 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-    child:
-      Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-                  style: Theme.of(context).textTheme.headline5,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    style: Theme.of(context).textTheme.headline5,
+                    decoration: InputDecoration(
+                      labelText: "Enter your current weight",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                    onSubmitted: _updateInput,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Container(
+                child: InputDecorator(
+                  child: Text(_input,
+                      style: Theme.of(context).textTheme.headline5),
                   decoration: InputDecoration(
-                    labelText: "Enter your current weight",
+                    labelText: 'What you just inputted',
+                    labelStyle: Theme.of(context).textTheme.headline5,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0)),
                   ),
-                  onSubmitted: _updateInput,
-                ),
-              ),
-
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Container(
-              child: InputDecorator(
-                child:
-                    Text(_input, style: Theme.of(context).textTheme.headline5),
-                decoration: InputDecoration(
-                  labelText: 'What you just inputted',
-                  labelStyle: Theme.of(context).textTheme.headline5,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: _viewList(),
-              padding: EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.amber),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: _viewList(),
+                padding: EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.amber),
+              ),
             ),
-          ),
-          Graph(weight),
-
-
-        ],
+            Graph(weight),
+          ],
+        ),
       ),
-  ),
     );
   }
 }
