@@ -51,19 +51,24 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _viewList() {
+  String _viewList() {
     String tmp = '';
-    if (weight.isEmpty)
-      return null;
-    else {
+    if (weight.isNotEmpty) {
       for (var text in weight) {
         tmp = tmp + ' ' + text;
       }
-      return Text(
-        tmp,
-        style: Theme.of(context).textTheme.headline5,
-      );
     }
+    return tmp;
+  }
+
+  //Clearing the Firestore weight List
+  void clearDB() {
+    setState(() {
+    weight.clear();
+    firestore.collection("Weight_List").document("wtlist").updateData({
+      "weight": FieldValue.delete(),
+    });
+    });
   }
 
   @override
@@ -93,10 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Container(
                 child: InputDecorator(
-                  child: Text(_input,
+                  child: Text(_viewList(),
                       style: Theme.of(context).textTheme.headline5),
                   decoration: InputDecoration(
-                    labelText: 'What you just inputted',
+                    labelText: 'The weight list',
                     labelStyle: Theme.of(context).textTheme.headline5,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0)),
@@ -104,17 +109,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            Graph(weight),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: _viewList(),
-                padding: EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.amber),
+              padding: const EdgeInsets.only(top: 8.0),
+              child: RaisedButton(
+                onPressed: clearDB,
+                color: Colors.redAccent,
+                padding: EdgeInsets.all(0.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: <Color>[
+                        Colors.red,
+                        Colors.redAccent,
+                        Colors.deepOrange,
+                      ],
+                    ),
+                  ),
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                    "CLEAR",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(color: Colors.white, fontSize: 25.0),
+                  ),
+                ),
               ),
             ),
-            Graph(weight),
           ],
         ),
       ),

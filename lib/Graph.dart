@@ -17,21 +17,21 @@ class GraphState extends State<Graph> {
   ];
   double minY;
   double maxY;
-  final fSpots = <FlSpot>[];
-@override
-void initState(){
-  super.initState();
-  minY=60;
-  maxY=100;
-}
+  @override
+  void initState() {
+    super.initState();
+    minY = 60;
+    maxY = 100;
+  }
+
   //Function to create the Spots from scratch using the weight list
   List<FlSpot> _updateSta() {
-    fSpots.clear(); //Clearing to avoid overlap of the list
+    final fSpots = <FlSpot>[];
 
     if (widget.wt.isNotEmpty) {
       for (int i = 0; i < widget.wt.length; i++) {
         fSpots.add(FlSpot((i.toDouble()), double.parse(widget.wt[i])));
-        if(i == 0){
+        if (i == 0) {
           minY = (double.parse(widget.wt[i]) - 20).roundToDouble();
           maxY = (double.parse(widget.wt[i]) + 20).roundToDouble();
         }
@@ -98,7 +98,6 @@ void initState(){
       borderData: FlBorderData(
           show: true,
           border: Border.all(color: const Color(0xff37434d), width: 1)),
-
       lineBarsData: [
         LineChartBarData(
           spots: _updateSta(),
