@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Weight_Tracker/Graph.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive/hive.dart';
 
 class MyHomePage extends StatefulWidget {
   // This widget is the home page of your application. It is stateful, meaning
@@ -18,36 +18,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _input;
-  final firestore = Firestore.instance;
-
   var weight = <String>[];
+  final box = Hive.box('Weight_List');
 
   @override
   void initState() {
     super.initState();
-    _input = '';
-    init();
-  }
-
-  void init() async {
-    var tmp =
-        await firestore.collection("Weight_List").document("wtlist").get();
-    if (tmp.data['weight'] != null) {
-      print(tmp.data['weight'].length);
-      weight = List<String>.from(tmp.data['weight']);
-    }
+    if(box.isNotEmpty)   //Updating the local weight list from the database
+      weight = box.get('weight');
+    else
+      box.put('weight', weight);
   }
 
   void _updateInput(String input) {
     setState(() {
-      _input = input;
-      weight.add(_input);
-
-      //Adding the array to firestore
-      firestore.collection("Weight_List").document("wtlist").updateData({
-        "weight": weight,  //FieldValue.arrayUnion doesn't add duplicate values
-      });
+      weight.add(input);
+      box.put('weight', weight);
     });
   }
 
@@ -61,13 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return tmp;
   }
 
-  //Clearing the Firestore weight List
+  //Clearing the Hive weight List
   void clearDB() {
     setState(() {
     weight.clear();
-    firestore.collection("Weight_List").document("wtlist").updateData({
-      "weight": FieldValue.delete(),
-    });
+    box.clear();
     });
   }
 
@@ -142,4 +126,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
 }
