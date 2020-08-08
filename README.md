@@ -46,13 +46,18 @@ There is one major bug right now: When the app is launched for the first time, e
 
 Anyway **Firebase is going to be removed from the project** because for this app requirement, using Firestore as database is a wastage of resources. A simpler way will be to use a database stored in the local storage of the user. Hence the next update would be to remove firestore and use Hive as a replacement. Not sure if I will be continuing with Hive, but that's the choice for now. Hence the major bug I just mentioned won't be considered, hoping implementing Hive will also sort out that issue(But should understand in the future why that bug)
 
+### 08-08-2020
+Completely replaced firestore with Hive. I love Hive so much, the simplicity in writing and understanding the code makes it so lovable. As expected the major bug notified in the last log update has been fixed. The data is there when the app is launched. 
+
+Right now there is a very tiny delay(about 100-200ms) in loading the main screen while it waits for loading the DB( opening box in Hive). That wait is shown as a splash screen( Scaffold with Loading text and circular progress indicator). Not much of an issue, but should improve the splash screen to be more likable. Again giving this very light weightage as the current splash screen also doesn't look that bad.
+
+Now that the base app is ready, its time to move on to modifying the graph(detailed in ToDo). Overall I am satisfied in how the app is turning out.
 
 # ToDo
 * Naming Y axis: **In Kg** or something if possible, not that important.
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
 * Change the touch property for graph.
-* Implement Hive as a replacement for firestore
 * The graph must show the weight without even touching the graph.
 
 # Done
@@ -60,3 +65,5 @@ Anyway **Firebase is going to be removed from the project** because for this app
 * Connected FireBase to the app.
 * Removing the what user inputted widget or just repurpose it to show the list of weight.
 * Learn how to implement the database in Firebase instead of storing it locally.
+* Implemented Hive as a replacement for firestore
+
