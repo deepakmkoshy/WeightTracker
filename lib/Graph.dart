@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 // ignore: must_be_immutable
 class Graph extends StatefulWidget {
   var wt = <String>[];
+
   Graph(this.wt);
 
   @override
@@ -15,8 +16,11 @@ class GraphState extends State<Graph> {
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
+
   double minY;
   double maxY;
+  double maxX;
+
   @override
   void initState() {
     super.initState();
@@ -27,14 +31,20 @@ class GraphState extends State<Graph> {
   //Function to create the Spots from scratch using the weight list
   List<FlSpot> _updateSta() {
     final fSpots = <FlSpot>[];
-
     if (widget.wt.isNotEmpty) {
       for (int i = 0; i < widget.wt.length; i++) {
-        fSpots.add(FlSpot((i.toDouble()), double.parse(widget.wt[i])));
+        double val = double.parse(widget.wt[i]);
+
+        fSpots.add(FlSpot((i.toDouble()), val));
         if (i == 0) {
-          minY = (double.parse(widget.wt[i]) - 20).roundToDouble();
-          maxY = (double.parse(widget.wt[i]) + 20).roundToDouble();
+          minY = (val - 20).roundToDouble();
+          maxY = (val + 20).roundToDouble();
         }
+        if (val > maxY)
+          maxY = val + 5;
+        else if (val < minY) minY = val - 5;
+        maxX = widget.wt.length.toDouble() - 1;
+        //Updates X-axis according to input instead of standard 7 data
       }
       return fSpots;
     } else
@@ -53,6 +63,15 @@ class GraphState extends State<Graph> {
 
   LineChartData graphData() {
     return LineChartData(
+      axisTitleData: FlAxisTitleData(
+        leftTitle: AxisTitle(
+            showTitle: true,
+            titleText: "(Kg)",
+            reservedSize: 5,
+            margin: 0,
+            textStyle: TextStyle(color: Colors.black, fontSize: 15),
+            textAlign: TextAlign.end),
+      ),
       clipData: FlClipData.all(),
       gridData: FlGridData(
         show: false,
@@ -110,10 +129,10 @@ class GraphState extends State<Graph> {
 //            FlSpot(5, 64),
 //            FlSpot(6, 70),
 //          ],
-
+          //  showingIndicators: showIndexes,
           isCurved: true,
           colors: gradientColors,
-          barWidth: 5,
+          barWidth: 1,
           isStrokeCapRound: true,
           dotData: FlDotData(
             show: true,
@@ -126,7 +145,7 @@ class GraphState extends State<Graph> {
         ),
       ],
       minX: 0,
-      maxX: 6,
+      maxX: maxX,
       minY: minY,
       maxY: maxY,
     );

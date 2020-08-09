@@ -61,16 +61,16 @@ class _MyAppState extends State<MyApp> {
                   child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text("Loading..."),
+                    Text("Loading..."),
                     CircularProgressIndicator()
                   ]))); //To load while the Hive is being loaded
         },
       ),
     );
   }
+
   @override
   void dispose() {
-    // TODO: implement dispose
     Hive.box('Weight_List').compact();
     Hive.close();
     super.dispose();
