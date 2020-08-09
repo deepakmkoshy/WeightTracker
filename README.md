@@ -53,17 +53,26 @@ Right now there is a very tiny delay(about 100-200ms) in loading the main screen
 
 Now that the base app is ready, its time to move on to modifying the graph(detailed in ToDo). Overall I am satisfied in how the app is turning out.
 
+### 09-08-2020
+Spent most of the day in figuring out how to modify the graph to show the weight without touching the graph, its possible, but I couldn't figure it out. Don't want to spend any more time on that.
+
+Added Kg to the Y axis(it looks wierd).
+
+Made the graph responsive to user inputs. The graph's X axis is changed according to the user input(Changing the default 7 in X-axis). Also the app will update the Y-axis as and when required. Need to modify the Y-axis interval so that things don't get cluttered when the weight range is high.
+
 # ToDo
-* Naming Y axis: **In Kg** or something if possible, not that important.
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
 * Change the touch property for graph.
 * The graph must show the weight without even touching the graph.
+* The user input must be checked and error must be shown if unacceptable input is entered.
 
 # Done
-* When a user adds a weight for the first time, the Y axis weight range should be according to that first weight. Meaning putting a 20 or 30 kg range(+20 and -20) based on that first weight.
+* When a user adds a weight for the first time, the Y axis weight range should be according to that first weight.
 * Connected FireBase to the app.
 * Removing the what user inputted widget or just repurpose it to show the list of weight.
 * Learn how to implement the database in Firebase instead of storing it locally.
 * Implemented Hive as a replacement for firestore
+* Named Y axis: **Kg** 
+
 
