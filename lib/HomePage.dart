@@ -20,11 +20,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var weight = <String>[];
   final box = Hive.box('Weight_List');
+  bool _showValidationError = false;
 
   @override
   void initState() {
     super.initState();
-    if(box.isNotEmpty)   //Updating the local weight list from the database
+    if (box.isNotEmpty) //Updating the local weight list from the database
       weight = box.get('weight');
     else
       box.put('weight', weight);
@@ -32,8 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _updateInput(String input) {
     setState(() {
-      weight.add(input);
-      box.put('weight', weight);
+      try {
+        double.parse(input);
+        _showValidationError = false;
+        weight.add(input);
+        box.put('weight', weight);
+      } on Exception catch (e) {
+        print('Error: $e');
+        _showValidationError = true;
+      }
     });
   }
 
@@ -50,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
   //Clearing the Hive weight List
   void clearDB() {
     setState(() {
-    weight.clear();
-    box.clear();
+      weight.clear();
+      box.clear();
     });
   }
 
@@ -70,10 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context).textTheme.headline5,
                     decoration: InputDecoration(
                       labelText: "Enter your current weight",
+                      errorText: _showValidationError
+                          ? 'Invalid number entered'
+                          : null,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                     ),
                     onSubmitted: _updateInput,
+                    keyboardType: TextInputType.number,
                   ),
                 ),
               ],
@@ -126,5 +138,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
 }

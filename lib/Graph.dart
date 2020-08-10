@@ -20,12 +20,14 @@ class GraphState extends State<Graph> {
   double minY;
   double maxY;
   double maxX;
+  double interval;
 
   @override
   void initState() {
     super.initState();
     minY = 60;
     maxY = 100;
+    interval = 5;
   }
 
   //Function to create the Spots from scratch using the weight list
@@ -40,11 +42,17 @@ class GraphState extends State<Graph> {
           minY = (val - 20).roundToDouble();
           maxY = (val + 20).roundToDouble();
         }
-        if (val > maxY)
+        if (val > maxY) //Updating Y-axis according to max wt
           maxY = val + 5;
         else if (val < minY) minY = val - 5;
         maxX = widget.wt.length.toDouble() - 1;
         //Updates X-axis according to input instead of standard 7 data
+
+        if (maxY - minY >=
+            60) //Updates the interval in Y-axis so as to avoid clustering of sidetitles
+          interval = 7;
+        else
+          interval = 5;
       }
       return fSpots;
     } else
@@ -68,14 +76,41 @@ class GraphState extends State<Graph> {
             showTitle: true,
             titleText: "(Kg)",
             reservedSize: 5,
-            margin: 0,
-            textStyle: TextStyle(color: Colors.black, fontSize: 15),
+            margin: 4,
+            textStyle: TextStyle(color: Colors.black, fontSize: 11),
             textAlign: TextAlign.end),
       ),
       clipData: FlClipData.all(),
       gridData: FlGridData(
         show: false,
       ),
+      lineBarsData: [
+        LineChartBarData(
+          spots: _updateSta(),
+          //          spots: [
+//            FlSpot(0, 90),
+//            FlSpot(1, 80),
+//            FlSpot(2, 70),
+//            FlSpot(3, 78),
+//            FlSpot(4, 86),
+//            FlSpot(5, 64),
+//            FlSpot(6, 70),
+//          ],
+          //  showingIndicators: showIndexes,
+          isCurved: true,
+          colors: gradientColors,
+          barWidth: 5,
+          isStrokeCapRound: true,
+          dotData: FlDotData(
+            show: true,
+          ),
+          belowBarData: BarAreaData(
+            show: true,
+            colors:
+                gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+          ),
+        ),
+      ],
       titlesData: FlTitlesData(
         show: true,
         bottomTitles: SideTitles(
@@ -111,39 +146,12 @@ class GraphState extends State<Graph> {
           ),
           reservedSize: 22,
           margin: 6,
-          interval: 5,
+          interval: interval,
         ),
       ),
       borderData: FlBorderData(
           show: true,
           border: Border.all(color: const Color(0xff37434d), width: 1)),
-      lineBarsData: [
-        LineChartBarData(
-          spots: _updateSta(),
-          //          spots: [
-//            FlSpot(0, 90),
-//            FlSpot(1, 80),
-//            FlSpot(2, 70),
-//            FlSpot(3, 78),
-//            FlSpot(4, 86),
-//            FlSpot(5, 64),
-//            FlSpot(6, 70),
-//          ],
-          //  showingIndicators: showIndexes,
-          isCurved: true,
-          colors: gradientColors,
-          barWidth: 1,
-          isStrokeCapRound: true,
-          dotData: FlDotData(
-            show: true,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            colors:
-                gradientColors.map((color) => color.withOpacity(0.3)).toList(),
-          ),
-        ),
-      ],
       minX: 0,
       maxX: maxX,
       minY: minY,
