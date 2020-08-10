@@ -60,12 +60,16 @@ Added Kg to the Y axis(it looks wierd).
 
 Made the graph responsive to user inputs. The graph's X axis is changed according to the user input(Changing the default 7 in X-axis). Also the app will update the Y-axis as and when required. Need to modify the Y-axis interval so that things don't get cluttered when the weight range is high.
 
+### 10-08-2020
+The Y-axis will update when the weight range is high(updates the interval to 7 when the range is higher than or equal to 60). 
+
+The user input is checked for errors while inputting.
+
 # ToDo
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
 * Change the touch property for graph.
 * The graph must show the weight without even touching the graph.
-* The user input must be checked and error must be shown if unacceptable input is entered.
 
 # Done
 * When a user adds a weight for the first time, the Y axis weight range should be according to that first weight.
@@ -74,5 +78,7 @@ Made the graph responsive to user inputs. The graph's X axis is changed accordin
 * Learn how to implement the database in Firebase instead of storing it locally.
 * Implemented Hive as a replacement for firestore
 * Named Y axis: **Kg** 
+* The user input must be checked and error must be shown if unacceptable input is entered.
+
 
 
