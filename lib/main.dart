@@ -41,11 +41,10 @@ class _MyAppState extends State<MyApp> {
             else
               return Scaffold(
                 appBar: AppBar(
-                  title: Center(
-                    child: Text(
-                      'Weight Tracker',
-                      style: TextStyle(fontSize: 30.0),
-                    ),
+                  centerTitle: true,
+                  title: Text(
+                    'Weight Tracker',
+                    style: TextStyle(fontSize: 30.0),
                   ),
                 ),
                 body: MyHomePage(),
@@ -53,13 +52,16 @@ class _MyAppState extends State<MyApp> {
                   child: ListView(
                     children: [
                       ListTile(
-                          title: Text('About'),
+                          title: Text(
+                            'About',
+                            style: TextStyle(fontSize: 25),
+                          ),
                           onTap: () {
                             Navigator.pop(context);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Settings()));
+                                    builder: (context) => About()));
                           })
                     ],
                   ),
