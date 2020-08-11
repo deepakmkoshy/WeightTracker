@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'about.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,15 +40,31 @@ class _MyAppState extends State<MyApp> {
               return Text(snapshot.error.toString());
             else
               return Scaffold(
-                  appBar: AppBar(
-                    title: Center(
-                      child: Text(
-                        'Weight Tracker',
-                        style: TextStyle(fontSize: 30.0),
-                      ),
+                appBar: AppBar(
+                  title: Center(
+                    child: Text(
+                      'Weight Tracker',
+                      style: TextStyle(fontSize: 30.0),
                     ),
                   ),
-                  body: MyHomePage());
+                ),
+                body: MyHomePage(),
+                drawer: Drawer(
+                  child: ListView(
+                    children: [
+                      ListTile(
+                          title: Text('About'),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Settings()));
+                          })
+                    ],
+                  ),
+                ),
+              );
           }
           return Scaffold(
               appBar: AppBar(
