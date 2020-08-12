@@ -65,6 +65,9 @@ The Y-axis will update when the weight range is high(updates the interval to 7 w
 
 The user input is checked for errors while inputting.
 
+### 11-08-2020
+Added a drawer(Side menu bar) and created an about page which has my photo(in circular avatar) and 2 lines of text. The sidebar has just 1 tile(about). Need to study about using tab bar too.
+
 # ToDo
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
