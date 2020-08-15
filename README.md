@@ -68,6 +68,16 @@ The user input is checked for errors while inputting.
 ### 11-08-2020
 Added a drawer(Side menu bar) and created an about page which has my photo(in circular avatar) and 2 lines of text. The sidebar has just 1 tile(about). Need to study about using tab bar too.
 
+### 15-08-2020
+This is just a plain update, no changes. I am not sure where I want to go with this app. I am going to leave it right here and come back when I get interested.
+
+Screenshot:
+<p align="center">
+  <img src="screenshots/14-08-2020.png" width="256" hspace="4">
+  <img src="screenshots/14-08-2020(2).png" width="256" hspace="4">
+  <img src="screenshots/14-08-2020(3).png" width="256" hspace="4">
+</p>
+
 # ToDo
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
