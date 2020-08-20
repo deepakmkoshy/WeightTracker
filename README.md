@@ -4,7 +4,7 @@
 
 This is just a small Weight tracking application developed using Flutter. 
 
-0.1.0 This is just a very basic app and not a production ready app. But you can check out the chart and the Hive DB in action.
+0.1.0: This is just a very basic app and not a production ready app. But you can check out the chart and the Hive DB in action.
 
 ## Screenschots:
 <p align="center">
