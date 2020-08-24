@@ -75,6 +75,15 @@ Screenshot:
   <img src="screenshots/14-08-2020(3).png" width="256" hspace="4">
 </p>
 
+### 20-08-2020
+Going Public! Making this repo public as I have literally nothing good to show on my git profile. 
+
+Added a new logo for the app, built a new apk with the logo. Created new Readme page and moved this log to another new file log.md
+
+### 24-08-2020
+Implemented TextEditingController to control user input text field. Added a button where the user can press after typing the weight(Makes it more user-friendly).
+Changed the app name to Weight Tracker( replacing Weight_Tracker). Some minor changes like changing header font size, correcting version number in about page.
+
 # ToDo
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
