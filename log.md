@@ -84,6 +84,8 @@ Added a new logo for the app, built a new apk with the logo. Created new Readme 
 Implemented TextEditingController to control user input text field. Added a button where the user can press after typing the weight(Makes it more user-friendly).
 Changed the app name to Weight Tracker( replacing Weight_Tracker). Some minor changes like changing header font size, correcting version number in about page.
 
+Special mention to Kevin Jacob for reporting the above bugs
+
 # ToDo
 * Converting the X-axis title to dates like 30/07, but lots of things to note like what if user updates the weight more than once in a day etc. 
 * Two tabs for past week graph range and past month graph
