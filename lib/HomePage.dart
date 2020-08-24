@@ -21,18 +21,28 @@ class _MyHomePageState extends State<MyHomePage> {
   var weight = <String>[];
   final box = Hive.box('Weight_List');
   bool _showValidationError = false;
+  final _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+
     if (box.isNotEmpty) //Updating the local weight list from the database
       weight = box.get('weight');
     else
       box.put('weight', weight);
   }
 
-  void _updateInput(String input) {
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _updateInput() {
     setState(() {
+      String input = _controller.text;
+      print(input);
       try {
         double.parse(input);
         _showValidationError = false;
@@ -71,10 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    controller: _controller,
                     style: Theme.of(context).textTheme.headline5,
                     decoration: InputDecoration(
                       labelText: "Enter your current weight",
@@ -84,9 +95,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                     ),
-                    onSubmitted: _updateInput,
                     keyboardType: TextInputType.number,
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Ink(
+                      decoration: ShapeDecoration(
+                          shape: CircleBorder(), color: Colors.redAccent),
+                      child: IconButton(
+                        onPressed: () {
+                          _updateInput();
+                        },
+                        icon: Icon(Icons.add),
+                      )),
                 ),
               ],
             ),
