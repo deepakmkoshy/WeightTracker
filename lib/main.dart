@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                   centerTitle: true,
                   title: Text(
                     'Weight Tracker',
-                    style: TextStyle(fontSize: 30.0),
+                    style: TextStyle(fontSize: 25.0),
                   ),
                 ),
                 body: MyHomePage(),

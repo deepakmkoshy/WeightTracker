@@ -28,7 +28,7 @@ class About extends StatelessWidget {
                 "This app was developed by Deepak Mathews Koshy\n\n\n\n",
                 textAlign: TextAlign.center,
               ),
-              Text("Weight Tracker V1.0.0"),
+              Text("Weight Tracker V0.1.0"),
             ],
           ),
         ),
