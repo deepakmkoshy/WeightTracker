@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: IconButton(
                       onPressed: () {
                         _updateInput();
+                        _controller.clear();
                       },
                       icon: Icon(Icons.add, color: Colors.white),
                     ),
