@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
+import 'package:splashscreen/splashscreen.dart';
 import 'HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -11,6 +12,7 @@ void main() async {
   Hive.init(dir.path);
   runApp(MyApp());
 }
+
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -32,7 +34,18 @@ class _MyAppState extends State<MyApp> {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: FutureBuilder(
+      home: 
+      SplashScreen(
+        seconds: 1,
+        title: Text(
+          'Welcome to \nWeight Tracker',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: Colors.white),
+        ),
+        image: Image.asset('assets/icons/weight-scale.png', scale: 5),
+        backgroundColor: Colors.purple,
+        navigateAfterSeconds: 
+      
+      FutureBuilder(
         future: Hive.openBox('Weight_List'),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
@@ -86,8 +99,9 @@ class _MyAppState extends State<MyApp> {
                   ]))); //To load while the Hive is being loaded
         },
       ),
-    );
+    ),);
   }
+  
 
   @override
   void dispose() {

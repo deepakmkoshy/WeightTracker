@@ -59,8 +59,10 @@ class GraphState extends State<Graph> {
         maxX = widget.wt.length.toDouble() - 1;
         //Updates X-axis according to input instead of standard 7 data
 
-        if (maxY - minY >=
-            60) //Updates the interval in Y-axis so as to avoid clustering of sidetitles
+//Updates the interval in Y-axis so as to avoid clustering of sidetitles
+        if (maxY - minY >= 100)
+          interval = 11;
+        else if (maxY - minY >= 60)
           interval = 7;
         else
           interval = 5;
@@ -99,8 +101,8 @@ class GraphState extends State<Graph> {
         leftTitle: AxisTitle(
             showTitle: true,
             titleText: "(Kg)",
-            reservedSize: 5,
-            margin: 4,
+            reservedSize: 10,
+            margin: 5,
             textStyle: TextStyle(color: Colors.black, fontSize: 11),
             textAlign: TextAlign.end),
       ),
