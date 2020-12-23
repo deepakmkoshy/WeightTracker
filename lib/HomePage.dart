@@ -41,10 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
         if (d < 0 || d > 200) {
           _showValidationError = true;
           _errorMsg = "Number should be less than 200";
-        }
-        weight.add(input);
+        } else {
+          weight.add(input);
 
-        box.put('weight', weight);
+          box.put('weight', weight);
+        }
       } on Exception catch (e) {
         print('Error: $e');
         _errorMsg = "Invalid number entered";

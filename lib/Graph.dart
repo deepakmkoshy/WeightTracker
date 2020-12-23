@@ -50,8 +50,14 @@ class GraphState extends State<Graph> {
 
         fSpots.add(FlSpot((i.toDouble()), val));
         if (i == 0) {
-          minY = (val - 20).roundToDouble();
           maxY = (val + 20).roundToDouble();
+          if (val <= 20) {
+            minY = 0;
+          }
+          else{
+          minY = (val - 20).roundToDouble();
+
+          }
         }
         if (val > maxY) //Updating Y-axis according to max wt
           maxY = val + 5;
