@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Graph extends StatefulWidget {
@@ -21,6 +21,7 @@ class GraphState extends State<Graph> {
   double maxY;
   double maxX;
   double interval;
+  double intervalX;
 
   @override
   void initState() {
@@ -28,6 +29,16 @@ class GraphState extends State<Graph> {
     minY = 60;
     maxY = 100;
     interval = 5;
+    intervalX = 1;
+  }
+
+  void clearGraph() {
+    setState(() {
+      minY = 60;
+      maxY = 100;
+      interval = 5;
+      intervalX = 1;
+    });
   }
 
   //Function to create the Spots from scratch using the weight list
@@ -53,10 +64,23 @@ class GraphState extends State<Graph> {
           interval = 7;
         else
           interval = 5;
+
+        //Updates the interval in Y-axis so as to avoid clustering of sidetitles
+        print(maxX);
+        if (maxX >= 7)
+          intervalX = 2;
+        else
+          intervalX = 1;
       }
       return fSpots;
-    } else
+    } else {
+      minY = 60;
+      maxY = 100;
+      maxX = 0;
+      interval = 5;
+      intervalX = 1;
       return [FlSpot(0, 0)]; //Placeholder until the user inputs the weight
+    }
   }
 
   @override
@@ -120,6 +144,7 @@ class GraphState extends State<Graph> {
               color: Color(0xff68737d),
               fontWeight: FontWeight.bold,
               fontSize: 16),
+          interval: intervalX,
 
           ///Leaving this here to understand the format to edit the X-axis later
           //getTitles: (value) {},
