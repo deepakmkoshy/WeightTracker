@@ -4,14 +4,6 @@ import 'package:Weight_Tracker/Graph.dart';
 import 'package:hive/hive.dart';
 
 class MyHomePage extends StatefulWidget {
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -102,12 +94,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Ink(
                       decoration: ShapeDecoration(
-                          shape: CircleBorder(), color: Colors.redAccent),
+                          shadows: [
+                  BoxShadow(
+                      color: Color(0x40000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 4))
+                ],
+                          shape: CircleBorder(), 
+                          gradient: LinearGradient(
+                      colors: <Color>[
+                        Colors.purple,
+                        Colors.deepPurpleAccent,
+                        // Colors.deepOrange,
+                      ],
+                    ),),
                       child: IconButton(
                         onPressed: () {
                           _updateInput();
                         },
-                        icon: Icon(Icons.add),
+                        icon: Icon(Icons.add, color: Colors.white),
                       )),
                 ),
               ],
@@ -130,17 +135,23 @@ class _MyHomePageState extends State<MyHomePage> {
             Graph(weight),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: RaisedButton(
+              child: FlatButton(
                 onPressed: clearDB,
-                color: Colors.redAccent,
                 padding: EdgeInsets.all(0.0),
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    boxShadow: [
+                  BoxShadow(
+                      color: Color(0x40000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 4))
+                ],
                     gradient: LinearGradient(
                       colors: <Color>[
-                        Colors.red,
-                        Colors.redAccent,
-                        Colors.deepOrange,
+                        Colors.purple,
+                        Colors.deepPurpleAccent,
+                        // Colors.deepOrange,
                       ],
                     ),
                   ),
