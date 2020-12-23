@@ -10,7 +10,6 @@ All data entered is stored locally using Hive NoSQL DB and the weight data is il
 <p align="center">
   <img src="screenshots/home-23-12.png" width="256" hspace="4">
   <img src="screenshots/action-23-12.png" width="256" hspace="4">
-  <img src="screenshots/14-08-2020(3).png" width="256" hspace="4">
 </p>
 
 ## Packages Used:
