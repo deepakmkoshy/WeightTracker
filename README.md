@@ -1,15 +1,15 @@
-# Weight Tracker - V0.1.0
+# Weight Tracker - V0.2.0
 
 <p align = "center"><img align="center" src="assets/icons/weight-scale.png" width="256" hspace="4"></p>
 
-This is just a small Weight tracking application developed using Flutter. 
+This is a Weight tracking application developed using Flutter. 
 
-0.1.0: This is just a very basic app(not user-friendly) and not a production ready app. But you can check out the chart and the Hive DB in action.
+All data entered is stored locally using Hive NoSQL DB and the weight data is illustrated beautifully using a graph.
 
 ## Screenschots:
 <p align="center">
-  <img src="screenshots/14-08-2020.png" width="256" hspace="4">
-  <img src="screenshots/14-08-2020(2).png" width="256" hspace="4">
+  <img src="screenshots/home-23-12.png" width="256" hspace="4">
+  <img src="screenshots/action-23-12.png" width="256" hspace="4">
   <img src="screenshots/14-08-2020(3).png" width="256" hspace="4">
 </p>
 
@@ -19,4 +19,4 @@ This is just a small Weight tracking application developed using Flutter.
 * <a href="https://pub.dev/packages/path_provider">Path Provider</a> for finding the db path location
 * <a href="https://pub.dev/packages/flutter_launcher_icons">Flutter Launcher Icons</a> for adding the app icon
 
-Check out Log.md if you have time to kill and to see what was going on my head(log updates)
+Check out Log.md if you have some time to kill and to see what was going on my head while developing this app(log updates)
